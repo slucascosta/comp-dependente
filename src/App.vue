@@ -1,28 +1,38 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    Pai: <SelectBox :itens="listaPai" @change.native="(e) => { dropSelecionado = e.target.id; valorPai = e.target.value }" /> |
+    Filho: <SelectBox :itens="listaFilhos" />
+    <br />
+    {{ dropSelecionado }}
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import SelectBox from './components/SelectBox'
+ 
 export default {
-  name: 'app',
-  components: {
-    HelloWorld
+  components: { SelectBox },
+    data () {
+    return {
+      listaPai: [
+        { valor: 1, descricao: 'Item 1'},
+        { valor: 2, descricao: 'Item 2'},
+        { valor: 3, descricao: 'Item 3'}
+      ],
+      listaFilhoTodos: [
+        { valor: 1, pai: 3, descricao: 'Item 1'},
+        { valor: 2, pai: 3, descricao: 'Item 2'},
+        { valor: 3, pai: 1, descricao: 'Item 3'}
+      ],
+      valorPai: null,
+      dropSelecionado: null
+    }
+  },
+  computed: {
+    listaFilhos () {
+      return this.listaFilhoTodos.filter(
+        (x) => x.pai == this.valorPai);
+    }
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
