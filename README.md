@@ -1,5 +1,7 @@
 # comp-dependente
 
+Example of dependent components
+
 ## Project setup
 ```
 npm install
