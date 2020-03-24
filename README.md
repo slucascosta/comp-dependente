@@ -1,6 +1,6 @@
 # comp-dependente
 
-Example of dependent components
+Example of dependent components with Vue
 
 ## Project setup
 ```
